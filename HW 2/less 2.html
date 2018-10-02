@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HW 2 JS lv2</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="card mt-2">
+        <div class="card-body">
+            <p class="card-text">
+
+            </p>
+        </div>
+    </div>
+    <form class="message-form mt-5">
+        <div class="form-group">
+            <label for="message">Сообщение</label>
+            <input type="text" class="form-control" id="message" placeholder="Введите Ваше сообщение">
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</div>
+<script>
+const user = {
+  name: 'bar',
+  email: '123',
+  age: 22
+}
+
+
+const jsonObj = JSON.stringify(user)
+const newObj = JSON.parse(jsonObj)
+console.log(newObj)
+
+
+const cardText = document.querySelector('.card-text')
+
+const getMessage = () => {
+  return fetch('http://89.108.65.123/getMessage')
+    .then(result => {
+      return result.text()
+    })
+    .then((text) => {
+      cardText.innerHTML = text
+      return text
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+}
+
+
+const sendMessage = (message) => {
+  return fetch('http://89.108.65.123/sendMessage', {
+    method: 'POST',
+    body: message
+  }).then(function (result) {
+        getMessage()
+        return result.status
+    }).catch(function (error) {
+        console.error(error)
+    })
+}
+
+const initForm = () => {
+  getMessage();
+  const messageForm = document.querySelector('.message-form')
+  const messageInput = messageForm.querySelector('#message')
+
+  messageForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+    sendMessage(messageInput.value)
+    return
+  })
+}
+
+document.addEventListener('DOMContentLoaded', initForm)
+
+
+</script>
+</body>
+</html>
