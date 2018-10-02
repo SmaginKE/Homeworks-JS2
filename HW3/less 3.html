@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS2 HW3</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<form class="message-form mt-5  user-form">
+	        <div class="form-group">
+	            <label for="inputName">Name</label>
+	            <input type="text" class="form-control" id="inputName" placeholder="Введите Ваше имя">
+	        </div>
+	        <div class="form-group">
+	            <label for="inputMail">Email</label>
+	            <input type="text" class="form-control" id="inputMail" placeholder="Введите Вашу почту">
+	        </div>
+	        <div class="form-group">
+	            <label for="inputNumber">Number</label>
+	            <input type="number" class="form-control" id="inputAge" placeholder="Введите Ваш возраст">
+	        </div>
+	        <div  class="form-group">
+			    <label for="exampleFormControlTextarea1">Example textarea</label>
+			    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Введите текст..."rows="3"></textarea>
+			</div>
+	        <button type="submit" class="btn btn-primary" >Отправить</button>
+	    </form>
+	</div>
+<script>
+
+	
+//console.log("Borobudur".replace(/[ou]/, "a")); // Barobudur
+//console.log("Borobudur".replace(/[ou]/g, "a")); // Barobudur
+
+
+var text = "The Desire Line ran from 1920 to 1948, at the height of streetcar use in New Orleans. The route ran down Royal, through the Quarter, to Desire Street in the Bywater district, and back up to Canal. Blanche's route in the play — ' They told me to take a streetcar named Desire, transfer to one called Cemeteries and ride six blocks and get off at—Elysian Fields!' — is allegorical, taking advantage of New Orleans's colorful street names: the Desire line itself crossed Elysian Fields Avenue on its way to Canal Street. There, one could transfer to the Cemeteries line, which ran along Canal, blocks away from Elysian Fields.The character of Blanche is thought to be based on William's sister, Rose Williams, who struggled with mental health issues and became incapacitated after a lobotomy.Theatre critic and former actress Blanche Marvin, a friend of Williams, says the playwright used her name for the character Blanche DuBois, named the character's sister Stella after Marvin's former surname 'Zohar' (which means 'Star' ), and took the play's line ' I've always depended on the kindness of strangers ' from something she said to him";
+
+
+//console.log(text);
+//console.log(text.replace(/'/g, '"'));
+  console.log(text.replace(/^'|(\s)'|'(\s)|'$/g, '"'));
+</script>
+</body>
+</html>
