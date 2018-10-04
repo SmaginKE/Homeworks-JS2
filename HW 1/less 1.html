@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HW 1 JS lv2</title>
+</head>
+<body>
+  <div>
+    <input  onclick="alert('Не нажимайте сюда!');" type="button" value=" pause " >
+    <input  id="stop" type="button" value=" STOP " >
+  </div>
+<script>
+/* ДЗ
+доработать кофеварку
+ввести значение зерен
+проверка на пустую кофеварку
+реализовать кнопку стоп
+* время приготовления зависит от кол-ва зерен
+*/
+
+
+
+/* Не знаю как корректно высчитать теплоемкость кофе, но нашёл  удельную теплоемкость сухого вещества зерна, которая составляет 1,55 кДж/(кг·k) отсюда и работаем
+*/
+    
+    function CoffeeMachine(power) {
+      // удельная теплоемкость воды и зерна
+      const waterHeatCapacity = 4200
+      const beanHeatCapacity = 1550
+      // температура воды до которой греем
+      const maxTemp = 90
+      // колличество воды и зерен в кофеварке
+      let waterAmount = 0
+      let beanAmount = 0
+
+
+      this.fill = function (newAmountW,newAmountB) {
+        if (newAmountW >=50 && newAmountB>=6 && newAmountB<=8) {
+          waterAmount = newAmountW
+          beanAmount = newAmountB
+          
+        } else if(newAmountW==0 && newAmountB==0) {
+
+          console.error('Кофемашина пуста !')
+
+        } else {
+          console.error('Проверьте колличество воды или зерен !')
+        }
+      }
+
+      this.stop=function(){
+
+      }
+
+      const getBoilTime = function () {
+        
+                return (((beanAmount*beanHeatCapacity) + (waterAmount*waterHeatCapacity)) * maxTemp) / power
+        
+      }
+
+      this.launch = function () {
+          
+          const time = getBoilTime()
+          console.info(`Время ожидания: ${time}`)
+          setTimeout(function () {
+            console.log('Ваш кофе готов!')
+          }, time)
+        }
+    }
+    
+
+    var vitek = new CoffeeMachine(4000)
+    vitek.fill(40,6)
+    vitek.launch()
+
+/* Не совсем понятно , как реализовать кнопку "стоп", чтоб она именно сбрасывала функцию или прерывала ее, пробовал менять значения зерен или воды на ходу, но она всё равно дорабатывает до конца. 
+Всё на что меня хватило это алерт, благодаря которому получаетс подобие паузы, пока он висит*/  
+
+    document.getElementById('stop').onclick = function(){
+      alert("STOP")
+      } 
+
+</script>
+</body>
+</html>
