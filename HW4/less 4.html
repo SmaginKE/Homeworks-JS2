@@ -85,32 +85,22 @@ $(".tab_item").not(":first").hide()
 $(".tabs .tab").click(function() {
 	$(".wrapper .tab").removeClass("active").eq($(this).index()).addClass("active")
 	$(".tab_item").hide().eq($(this).index()).fadeIn()
-}).eq(0).addClass("active")
+}).eq(0).addClass("active");
 
 
 
-/*
-$.ajax({
-	url:'http://89.108.65.123/cities',
-	success:function(data){
-		let cities = JSON.parse(data)
-		 for (let i=0; i<cities.length; i++ )
-		 	var name = cities[i].name
-		}
-				var nameList = JSON.stringify(name)
-				 console.log(nameList)
-				
-				 $('#cities').autocomplete({
-	source: nameList
-	
-})
-	
-})
-	*/
-
-
-
-
+let names = [];
+    $.ajax({ url: 'http://89.108.65.123/cities',        
+    	success: function (data) {            
+    		let cities = JSON.parse(data);           
+    		 for (let i = 0; i < cities.length; i++) {              
+    		   names.push(cities[i].name);            
+    		 }      
+    		   }  
+    		     })   
+    		      $('#cities').autocomplete({       
+    		       source: names    
+    		     })
 
 </script>
 </body>
