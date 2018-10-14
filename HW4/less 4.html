@@ -13,7 +13,32 @@
 <style>
 	.tab{
 		cursor: pointer;
+		background: red;
+		border-radius: 5px;
+		font-size: 12px;
+		line-height: 18px;
+		padding: 3px;
 	}
+	.active{
+		background: green;
+	}
+	.tab_content{
+		width: 400px;
+		border-radius: 5px;
+		border:1px solid black;
+		padding: 5px;
+	}
+	#cities{
+		margin: 0px 0px;
+		border-radius: 3px;
+	}
+	.form{
+		display: flex;
+		flex-direction: column;
+		width: 150px;
+		margin: 0px 120px;
+	}
+	
 </style>
 </head>
 <body>
@@ -25,39 +50,68 @@
         <span class="tab">Вкладка 3</span>        
     </div>
     <div class="tab_content">
-        <div class="tab_item">Содержимое 1</div>
-        <div class="tab_item">Содержимое 2</div>
-        <div class="tab_item">Содержимое 3</div>
+        <div class="tab_item">
+        	<h2>Текст 1</h2>
+	        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit ea, ullam magni quo quos fuga?</p>
+	        <p>Earum debitis assumenda ipsum placeat aliquid iure quibusdam veritatis, omnis! Animi laborum atque, sint ipsa.</p>
+	        <p>Recusandae eius iure laudantium repellat quo repellendus, tenetur tempora beatae debitis ut sunt magni qui.</p>
+	        <p>Cupiditate magni aliquam laboriosam facilis nemo totam natus, repellat ea itaque, sunt. Corrupti, quisquam modi!</p>
+    		</div>
+    		<div class="tab_item">
+    			<h2>Текст 2</h2>
+	        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit ea, ullam magni quo quos fuga?</p>
+	        <p>Cupiditate magni aliquam laboriosam facilis nemo totam natus, repellat ea itaque, sunt. Corrupti, quisquam modi!</p>
+    		</div>
+    		<div class="tab_item">
+    			<h2>Текст 3</h2>
+	        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit ea, ullam magni quo quos fuga?</p>
+	        <p>Earum debitis assumenda ipsum placeat aliquid iure quibusdam veritatis, omnis! Animi laborum atque, sint ipsa.</p>
+	        <p>Recusandae eius iure laudantium repellat quo repellendus, tenetur tempora beatae debitis ut sunt magni qui.</p>
+	        <p>Cupiditate magni aliquam laboriosam facilis nemo totam natus, repellat ea itaque, sunt. Corrupti, quisquam modi!</p>
+	        <p>Cupiditate magni aliquam laboriosam facilis nemo totam natus, repellat ea itaque, sunt. Corrupti, quisquam modi!</p>
+    		</div>
     </div>
 </div>
 	</div>
 
-	<input type="text" id="cities">
-<script>
+<form class="form">
+	<label for="cities" id="label">City</label>
+	<input type="text" id="cities" placeholder="Введите Ваш город">
+</form>
 
-$(".tab_item").not(":first").hide();
+<script>
+$(".tab_item").not(":first").hide()
 
 $(".tabs .tab").click(function() {
-	$(".wrapper .tab").removeClass("active").eq($(this).index()).addClass("active");
+	$(".wrapper .tab").removeClass("active").eq($(this).index()).addClass("active")
 	$(".tab_item").hide().eq($(this).index()).fadeIn()
-}).eq(0).addClass("active");
+}).eq(0).addClass("active")
 
 
 
+/*
 $.ajax({
 	url:'http://89.108.65.123/cities',
 	success:function(data){
-		var cities = JSON.parse(data)
+		let cities = JSON.parse(data)
 		 for (let i=0; i<cities.length; i++ )
-		 //	console.log(cities.length)
-		console.log(cities[i].name)
-	}
+		 	var name = cities[i].name
+		}
+				var nameList = JSON.stringify(name)
+				 console.log(nameList)
+				
+				 $('#cities').autocomplete({
+	source: nameList
+	
 })
 	
-$('#cities').autocomplete({
-	source: cities,
-	minLenght:2
 })
+	*/
+
+
+
+
+
 </script>
 </body>
 </html>
