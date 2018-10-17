@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <ul class="list-group user-list" >
+    </ul>
+    
+    <form class="message-form mt-5  user-form">
+        <div class="form-group">
+            <label for="inputName">Name</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Введите Ваше имя">
+        </div>
+        <div class="form-group">
+            <label for="inputMail">Email</label>
+            <input type="text" class="form-control" id="inputMail" placeholder="Введите Вашу почту">
+        </div>
+        <div class="form-group">
+            <label for="inputAge">Age</label>
+            <input type="number" class="form-control" id="inputAge" placeholder="Введите Ваш возраст">
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</div>
+<script>
+
+
+const baseURL = 'http://89.108.65.123'
+const inputs =[ ...document.querySelectorAll('.user-form input')]
+const userList =document.querySelector('.user-list')
+
+const userForm = document.querySelector (`.user-form`)
+ userForm.addEventListener(`submit`,(e) =>{
+
+  
+
+  e.preventDefault()
+  const [name, email, age] = [...inputs].map(input => input.value)
+  const userObj = {
+  name,
+  email,
+  age,
+} 
+  
+  const xhr = new XMLHttpRequest()
+  xhr.open('POST', `${baseURL}/user`,true)
+  xhr.send(JSON.stringify(userObj))
+  xhr.onreadystatechange = function(){
+    if (xhr.readyState === 4 && xhr.status === 200){
+      alert (`Пользователь ${name} создан.`)
+    }
+  }
+})
+
+
+  const getUsers = () => {
+  const xhr = new XMLHttpRequest()
+  xhr.open('GET', `${baseURL}/user`,true)
+  xhr.send()
+  xhr.onreadystatechange = function(){
+      if (xhr.readyState === 4 && xhr.status === 200){
+      const users = JSON.parse( xhr.responseText)
+      userList.innerHTML = ''
+      users.forEach((user)=>{
+        
+        userList.innerHTML += `<li class="list-group-item " style="cursor: pointer"  >${user.name}(${user.age})-${user.email} </li>`
+        
+    } )
+  }
+      
+ }
+
+ 
+}
+getUsers()
+
+document.getElementsByTagName('li').onclick = function(){
+              alert('${user.name}-${user.age}-${user.email}')}
+                
+  
+  /*
+
+ function p (){
+      alert('${user.name}(${user.age})-${user.email}')
+    }  
+    const info = document.querySelectorAll('ul')
+    info.addEventListener(`click`, p)   }
+
+/*
+            
+      } 
+ 
+*/
+</script>
+</body>
+</html>
